@@ -1,0 +1,403 @@
+/*+++++++++++++++++++++++++ Nave bar Componenet css +++++++++++++++++++++++++ */
+
+.logo{
+    width: 45px;
+    transition: transform 0.3s ease;
+}
+.title{
+  display: inline-flex;
+  margin: 10px;
+  color: black;
+}
+.logo:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.Logo-Title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.NavBar{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(236, 239, 241);
+    border-radius: 13px;
+    box-shadow: 2px 6px 4px rgba(150, 58, 58, 0.25);
+    margin: 6px;
+    height: 50px;
+}
+.userLogo{
+  width: 40px;
+}
+.NavBar .nav-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 20px;
+    height: 60px;
+}
+.NavBar .nav-links > .li{
+    display: inline-block;
+    position: relative;
+    list-style: none;
+}
+.NavBar .nav-links > li{
+  padding: 8px;
+  transition:  font-weight 0.3s padding 0.3s;
+}
+.NavBar .nav-links >li:hover{
+  font-weight: 600;
+  padding: 7px;
+}
+.NavBar .nav-links > .li >a{
+    text-decoration: none;
+    color: black;
+    transition: font-size 0.3s, color 0.3s, margin 0.3s;
+    font-size: 1rem;
+    width: fit-content;
+}
+.NavBar .nav-links > .li >a:hover{
+    text-decoration: underline;
+    color: black;
+    font-size: 1.1em;
+    margin: 0px -2.1px;
+    
+}
+.NavBar .nav-links > .li >a.active{
+    text-decoration: underline;
+    color: black;
+    font-size: 1.1em;
+    margin: 0px -2.1px;
+
+}
+/* From Uiverse.io by alexruix */ 
+.group {
+ display: flex;
+ line-height: 28px;
+ align-items: center;
+ position: relative;
+ max-width: 900px;
+ width: 400px;
+}
+
+.input-search {
+ width: 400px;
+ height: 40px;
+ line-height: 28px;
+ padding: 0 1rem;
+ padding-left: 2.5rem;
+ border: 2px solid transparent;
+ border-radius: 8px;
+ outline: none;
+ background-color: #f3f3f4;
+ color: #0d0c22;
+ transition: .3s ease;
+}
+
+.input-search::placeholder {
+ color: #9e9ea7;
+}
+
+.input-search:focus, input:hover {
+ outline: none;
+ border-color: rgba(234,76,137,0.4);
+ background-color: #fff;
+ box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+.icon {
+ position: absolute;
+ left: 1rem;
+ fill: #9e9ea7;
+ width: 1rem;
+ height: 1rem;
+}
+
+.NavBar .ConAb{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Log-sing {
+  --primary-color: rgb(236, 239, 241);
+  --secondary-color: #000000;
+  --hover-color: rgb(236, 239, 241);
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.Log-sing .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Log-sing .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.Log-sing .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.Log-sing:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.Log-sing:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.Log-sing:hover .arrow:before {
+  right: 0;
+}
+
+
+
+/*+++++++++++++++++++++++++ Single Card Componenet css +++++++++++++++++++++++++*/
+ .Card-container {
+    width: 260px;
+    height: 440px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 13px;
+    background-color: rgb(236, 239, 241);
+    padding: 10px;
+    margin: 10px;
+    margin-top: 42px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.book_img {
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.Card-container > h1,
+.Card-container > h3,
+.Card-container > p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.Card-container > h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 300;
+    font-size: 1.4em;
+    margin-top: 8px;
+}
+
+.Card-container > h3 {
+    font-size: 1em;
+    margin-top: 4px;
+}
+
+.Card-container > p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    font-family: 'Roboto', sans-serif;
+}
+/*+++++++++++++++++++++++++ Button Componenet css +++++++++++++++++++++++++*/
+.CartBtn {
+  width: 140px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgb(235, 136, 136);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: .5s;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+  position: relative;
+}
+
+.IconContainer {
+  position: absolute;
+  left: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: .5s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(17, 17, 17);
+  z-index: 1;
+  transition-duration: .5s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.CartBtn:hover .IconContainer {
+  transform: translateX(58px);
+  border-radius: 40px;
+  transition-duration: .5s;
+}
+
+.CartBtn:hover .text {
+  transform: translate(10px,0px);
+  transition-duration: .5s;
+}
+
+.CartBtn:active {
+  transform: scale(0.95);
+  transition-duration: .5s;
+}
+.PaginB{
+  background-color: rgb(236, 239, 241);
+  border: none; padding: 5px;
+  border-radius: 9px;
+}
+
+/* Slider.css */
+.slider-container1 {
+  width: 100%;
+  max-width: 1800px; /* Set a maximum width for the slider */
+  margin: 0 auto; /* Center the slider */
+  padding: 20px; /* Add some padding around the slider */
+  display: flex;
+  justify-content: center;
+}
+
+.slider-image {
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure images do not exceed their container */
+}
+
+.slick-slide {
+  display: inline-block !important; /* Ensure slides are displayed inline */
+  margin: 150px; /* Adjust margin between slides */
+
+}
+.slider-container {
+  width: 170vh;
+  margin: 0 auto;
+  padding: 20px; /* Add some padding around the slider */
+}
+
+.slider-image {
+  border: solid 2px rgba(253, 91, 0, 1);
+  border-radius: 12px;
+  margin-left: 10px;
+  width: 1170px; /* Make images fill their parent container */
+  height: 630px; /* Maintain aspect ratio */
+  max-width: auto; /* Set maximum width for images */
+}
+
+.slick-slide {
+  display: inline-block !important; /* Ensure slides are displayed inline */
+  margin: 0; /* Adjust margin between slides */
+  margin-bottom: 0;
+
+}
+
+.contentImage{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure images cover the entire container */
+  display: flex;
+  justify-items: center;
+}
+
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    justify-items: center; /* Center cards horizontally in their grid cell */
+    align-items: start;    /* Align cards to the top */
+    width: 100%;
+}
+/*+++++++++++++++++++++++++ Footer Componenet css +++++++++++++++++++++++++*/
+.socialLogos{
+  width: 40px;
+}
+footer{
+  width: 100%;
+  bottom: 0;
+  position:relative;
+  margin-top: 50px;
+  background-color: rgb(236, 239, 241);
+}
+.footer-container{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+.footer-copyright{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  background-color: rgb(255 ,116 ,29);
+}
+.footer-sec2 > ul > li > a, .footer-sec3 > ul > li > a{
+  text-decoration: none;
+  color: black;
+}
+
+.article-container{
+  margin: 10px;
+}

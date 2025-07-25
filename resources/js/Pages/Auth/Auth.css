@@ -1,0 +1,80 @@
+.container{
+    width: 481px;
+    height: 594px;
+    max-width: 481px;
+    background-color: rgb(236, 239, 241);
+    border-radius: 22px;
+    box-shadow: 2px;
+    box-shadow: 3px 4px 3px rgba(150, 58, 58, 0.15);
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    place-self: center;
+}
+.group {
+ display: flex;
+ line-height: 28px;
+ align-items: center;
+ position: relative;
+ max-width: 900px;
+ margin-left: 80px;
+ margin-right: 80px;
+}
+.input-l {
+ width: 360px;
+ height: 33px;
+ line-height: 28px;
+ padding: 0 1rem;
+ padding-left: 2.5rem;
+ border: 2px solid transparent;
+ border-radius: 8px;
+ outline: none;
+ color: #000000;
+ transition: .3s ease;
+ margin-top: 26px;
+ background-color: #ffffff;
+}
+.input-l::placeholder {
+ color: #000000;
+}
+.input-l:focus, input:hover {
+ outline: none;
+ border-color: rgba(234,76,137,0.4);
+ background-color: #ffffff;
+ box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+.img{
+    width: 47px;
+}
+#pass{
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+#logbtn{
+    width: 219px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: rgb(235, 136, 136);
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 20px;
+}
+#logbtn:hover{
+    cursor: pointer;
+    background-color: rgb(216, 124, 124);
+}
+
+#sign{
+    font-size: 16px;
+    font-weight: bold;
+}
+#sign > span{
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+    text-decoration: underline;
+}

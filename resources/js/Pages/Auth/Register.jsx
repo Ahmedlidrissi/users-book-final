@@ -21,11 +21,17 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/register');
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('email', data.email);
+        formData.append('profilepicture', data.profilepicture);
+        formData.append('password', data.password);
+        formData.append('password_confirmation', data.password_confirmation);
+        post('/register', { forceFormData: true });
     };
 
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
             <input type="text" name="name" value={data.name} onChange={handleChange} placeholder="Name" />
             <input type="email" name="email" value={data.email} onChange={handleChange} placeholder="Email" />
             <input type="file" name="profilepicture" onChange={handleChange} />

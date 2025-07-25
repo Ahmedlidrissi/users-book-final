@@ -1,5 +1,7 @@
 import { useForm } from '@inertiajs/react';
-
+import './Auth.css'
+import { Link } from '@inertiajs/react';
+import google from '../../assets/google.png';
 export default function Login() {
   const { data, setData, post, errors } = useForm({
     email: '',
@@ -13,13 +15,12 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper" style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h1>Login</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
+      <form className='container' onSubmit={handleSubmit}>
+        <h1>Log in</h1>
+        <div className='group'>
+          <input className='input-l'
+            placeholder='Email'
             type="email"
             value={data.email}
             onChange={(e) => setData('email', e.target.value)}
@@ -27,10 +28,9 @@ export default function Login() {
           />
           {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
         </div>
-
-        <div>
-          <label>Password</label>
-          <input
+        <div className='group'>
+          <input className='input-l'
+            placeholder='Password'
             type="password"
             value={data.password}
             onChange={(e) => setData('password', e.target.value)}
@@ -49,9 +49,17 @@ export default function Login() {
             Remember Me
           </label>
         </div>
+        <h3 id='pass'>
+            Forgot Your Password?
+        </h3>
+        <button id='logbtn' type="submit">Login</button>
+        <div className="img-container">
+                <Link href='https://google.com'>
+                    <img className='img' src={google} alt="google" />
+                </Link>
+        </div>
+        <h3 id='sign'>New Here? <span>Sign in</span></h3>
 
-        <button type="submit">Login</button>
       </form>
-    </div>
   );
 }

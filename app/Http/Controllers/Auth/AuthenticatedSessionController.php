@@ -26,12 +26,12 @@ class AuthenticatedSessionController extends Controller
     }
     public function register(RegisterRequest $request) : RedirectResponse
     {
-        $data = $request->validated();
+        $validated = $request->validated();
         if ($request->hasFile('profilepicture')) {
-            $data['profilepicture'] = $request->file('profilepicture')->store('profile_pictures', 'public');
+            $validated['profilepicture'] = $request->file('profilepicture')->store('profile_pictures', 'public');
         }
-        $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
+        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
         Auth::login($user);
         return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
@@ -52,11 +52,26 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended('/');
   }
-  
-    public function destroy(Request $request) : RedirectResponse
+
+    public function logout(Request $request) : RedirectResponse
     {
         Auth()->logout();
 
         return redirect('/');
+    }
+    public function destroy(Request $request) : RedirectResponse
+    {
+        $user = Auth::user();
+        if ($user) {
+            $user->delete();
+            Auth::logout();
+        }
+        return redirect('/')->with('success', 'Your account has been deleted.');
+        }
+
+    public function Index(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return Inertia::render('Dashboard/Show', ['user' => $user]);
     }
 }

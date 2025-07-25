@@ -15,6 +15,7 @@ function ShowUser() {
             <p>Joined on: {new Date(user.created_at).toLocaleDateString()}</p>
             <p>Last updated: {new Date(user.updated_at).toLocaleDateString()}</p>
             <Link href='/logout' method='post'>Logout</Link>
+            <Link href='/delete' method='post'>Delete Account</Link>
         </div>
     );
 }

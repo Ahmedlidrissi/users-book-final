@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return inertia('Home');
@@ -19,11 +20,22 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
-        ->name('dashboard.index');
     Route::get('/dashboard/{id}', [App\Http\Controllers\DashboardController::class, 'show'])
         ->name('dashboard.show');
-
-    Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+    Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'logout'])
         ->name('logout');
+    Route::post('/delete', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+        ->name('delete');
 });
+Route::resource('books', BookController::class);
+
+
+
+
+
+
+
+
+Route::get('/{any}', function () {
+    return inertia('NotFound');
+})->where('any', '.*');

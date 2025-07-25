@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
+        $user = User::findOrFail($id);
         return Inertia::render('Dashboard/Index', ['user' => $user]);
     }
     public function show(Request $request, $id)
