@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\BooksController;
 
 Route::get('/', function () {
     return inertia('Home');
@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/delete', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
         ->name('delete');
 });
-Route::resource('books', BookController::class);
+Route::resource('books', BooksController::class);
 
 
 

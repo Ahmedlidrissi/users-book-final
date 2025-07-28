@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-use App\Models\Book as Books;
-use App\Http\Requests\StoreBookRequest as StoreBooksRequest;
-use App\Http\Requests\UpdateBookRequest as UpdateBooksRequest;
+use App\Models\Books;
+use App\Http\Requests\StoreBooksRequest;
+use App\Http\Requests\UpdateBooksRequest;
 
-class BookController extends Controller
+class BooksController extends Controller
 {
     /**
      * Display a listing of the resource.

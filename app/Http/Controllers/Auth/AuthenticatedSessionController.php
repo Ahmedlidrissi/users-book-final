@@ -27,9 +27,6 @@ class AuthenticatedSessionController extends Controller
     public function register(RegisterRequest $request) : RedirectResponse
     {
         $validated = $request->validated();
-        if ($request->hasFile('profilepicture')) {
-            $validated['profilepicture'] = $request->file('profilepicture')->store('profile_pictures', 'public');
-        }
         $validated['password'] = Hash::make($validated['password']);
         $user = User::create($validated);
         Auth::login($user);

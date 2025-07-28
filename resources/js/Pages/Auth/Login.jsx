@@ -58,7 +58,7 @@ export default function Login() {
                     <img className='img' src={google} alt="google" />
                 </Link>
         </div>
-        <h3 id='sign'>New Here? <span>Sign in</span></h3>
+        <h3 id='sign'>New Here? <Link href='/register'><span className='text-red-700'>Sign in</span></Link></h3>
 
       </form>
   );

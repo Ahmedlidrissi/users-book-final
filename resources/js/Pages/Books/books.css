@@ -9,6 +9,19 @@
     background-color: rgb(236, 239, 241);
     padding: 2px;
     border: 1px solid black;
+    display: block;
+    width: 180px;
+    height: 40px;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    transition: 0.2s;
+    margin-top: 10px;
 }
 .btn-warning{
   position: relative;
@@ -41,8 +54,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 600px;
+    margin-top: 20px;
+    border-radius: 22px;
+    box-shadow: 3px 4px 3px rgba(150, 58, 58, 0.15);
+    padding: 20px;
+    height: 660px;
     width: 500px;
+    place-self: center;
+    background-color: rgb(236, 239, 241);
 }
 
 .create-book-form input[type = 'text'],
@@ -53,7 +72,6 @@
     height: 35px;
     border-radius: 5px;
     padding: 4px;
-    border: 1px solid black;
 }
 .create-book-form textarea.description-input {
     background: white;
@@ -62,7 +80,6 @@
     height: 130px;
     border-radius: 5px;
     padding: 4px;
-    border: 1px solid black;
     resize: vertical;
 }
 .create-book-form input[type = 'submit']{
@@ -73,4 +90,126 @@
 }
 .create-book-form label{
     display: block;
+}
+/*+++++++++++++++++++++++++ Single Card Componenet css +++++++++++++++++++++++++*/
+.Card-container {
+    width: 260px;
+    height: 480px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 13px;
+    background-color: rgb(236, 239, 241);
+    padding: 10px;
+    margin: 10px;
+    margin-top: 42px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.book_img {
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.Card-container > h1,
+.Card-container > h3,
+.Card-container > p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.Card-container > h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 300;
+    font-size: 1.4em;
+    margin-top: 8px;
+}
+
+.Card-container > h3 {
+    font-size: 1em;
+    margin-top: 4px;
+}
+
+.Card-container > p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    font-family: 'Roboto', sans-serif;
+}
+/*+++++++++++++++++++++++++ Button Componenet css +++++++++++++++++++++++++*/
+.CartBtn {
+  width: 140px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgb(235, 136, 136);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: .5s;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+  position: relative;
+}
+
+.IconContainer {
+  position: absolute;
+  left: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: .5s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(17, 17, 17);
+  z-index: 1;
+  transition-duration: .5s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.CartBtn:hover .IconContainer {
+  transform: translateX(58px);
+  border-radius: 40px;
+  transition-duration: .5s;
+}
+
+.CartBtn:hover .text {
+  transform: translate(10px,0px);
+  transition-duration: .5s;
+}
+
+.CartBtn:active {
+  transform: scale(0.95);
+  transition-duration: .5s;
+}
+.PaginB{
+  background-color: rgb(236, 239, 241);
+  border: none; padding: 5px;
+  border-radius: 9px;
 }

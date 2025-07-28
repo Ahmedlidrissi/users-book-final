@@ -30,7 +30,7 @@ function CreateBook(){
     }
     return(
         <form className='create-book-form' onSubmit={handleSubmit}> 
-            <h1>Add book</h1>
+            <h1 className='text-xl font-bold'>Add book</h1>
             <input type='text' name='title' placeholder='Title' onChange={(e) => setForm({...form, title : e.target.value})}/>
             <input type='text' name='genre' placeholder='Genre' onChange={(e) => setForm({...form, genre : e.target.value})}/>
             <textarea
