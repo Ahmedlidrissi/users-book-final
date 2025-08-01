@@ -18,4 +18,9 @@ class Books extends Model
         'price',
         'cover_image',
     ];
+    function bookImgs()
+    {
+        return $this->hasMany(BookImgs::class, 'book_id');
+    }
+
 }

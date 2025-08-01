@@ -10,6 +10,8 @@ function CreateBook(){
         author: '',
         price: '',
         cover_image: '',
+        image_path: '',
+        book_images: [],
         // _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     })
     const handleSubmit = (e) => {
@@ -22,6 +24,7 @@ function CreateBook(){
         formData.append('author', form.author);
         formData.append('price', form.price);
         formData.append('cover_image', form.cover_image);
+        formData.append('image_path', form.image_path);     
         // formData.append('_token', form._token);
 
         Inertia.post('/books', formData, {

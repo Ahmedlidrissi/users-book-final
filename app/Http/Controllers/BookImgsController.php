@@ -13,7 +13,7 @@ class BookImgsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -27,10 +27,23 @@ class BookImgsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookImgsRequest $request)
-    {
-        //
+public function store(Request $request, $bookId)
+{
+    $request->validate([
+        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    foreach ($request->file('images') as $image) {
+        $path = $image->store('book_images', 'public');
+
+        BookImg::create([
+            'book_id' => $bookId,
+            'image_path' => $path,
+        ]);
     }
+    return redirect()->back()->with('success', 'Images uploaded successfully.');
+}
+
 
     /**
      * Display the specified resource.

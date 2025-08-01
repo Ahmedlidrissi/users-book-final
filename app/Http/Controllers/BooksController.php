@@ -14,7 +14,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $book = Books::latest()->get();
+        // $book = Books::latest()->get();
+        // If you want to include related images, you can use eager loading
+        $book = Books::with('bookImgs')->latest()->get();
         return Inertia::render('Books/Index', ['books' =>$book]);
     }
 
@@ -31,6 +33,7 @@ class BooksController extends Controller
      */
     public function store(StoreBooksRequest $request)
     {
+
         $validated = $request->validated();
         if ($request->hasFile('cover_image')) {
         $path = $request->file('cover_image')->store('covers', 'public');

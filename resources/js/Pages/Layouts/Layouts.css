@@ -34,7 +34,7 @@
 .NavBar .nav-links{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     flex-grow: 1;
     gap: 20px;
     height: 60px;
