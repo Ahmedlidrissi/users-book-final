@@ -17,10 +17,7 @@ class Books extends Model
         'author',
         'price',
         'cover_image',
+        'book_imgs',
     ];
-    function bookImgs()
-    {
-        return $this->hasMany(BookImgs::class, 'book_id');
-    }
 
 }

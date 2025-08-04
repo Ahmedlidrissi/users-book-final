@@ -33,14 +33,26 @@ class BooksController extends Controller
      */
     public function store(StoreBooksRequest $request)
     {
-
+        ddd($request->all());
         $validated = $request->validated();
+
+        // Handle cover image upload
         if ($request->hasFile('cover_image')) {
-        $path = $request->file('cover_image')->store('covers', 'public');
-        $validated['cover_image'] = $path;
-    }
-        Books::create($validated);
+            $validated['cover_image'] = $request->file('cover_image')->store('covers', 'public');
+        }
+        if ($request->hasFile('book_imgs')) {
+            foreach ($request->file('book_imgs') as $image) {
+                $path = $image->store('book_images', 'public');
+                \App\Models\BookImgs::create([
+                    'book_id' => $book->id,
+                    'image_path' => $path,
+                ]);
+            }
+        }
+        $book = Books::create($validated);
+
         return Inertia::location(route('books.index'));
+        dd($request->all());
     }
 
     /**

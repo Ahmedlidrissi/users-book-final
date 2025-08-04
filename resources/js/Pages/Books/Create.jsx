@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import './books.css'
+import '../../../css/app.css';
 function CreateBook(){
     const [form, setForm] = useState({
         title: '',
@@ -9,10 +10,8 @@ function CreateBook(){
         publish_date: '',
         author: '',
         price: '',
-        cover_image: '',
-        image_path: '',
-        book_images: [],
-        // _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        cover_image: null,
+        book_imgs: [],
     })
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,12 +23,10 @@ function CreateBook(){
         formData.append('author', form.author);
         formData.append('price', form.price);
         formData.append('cover_image', form.cover_image);
-        formData.append('image_path', form.image_path);     
-        // formData.append('_token', form._token);
-
-        Inertia.post('/books', formData, {
-            forceFormData: true,
+        form.book_imgs.forEach(file => {
+            formData.append('book_imgs[]', file);
         });
+        Inertia.post('/books', formData, { forceFormData: true });
     }
     return(
         <form className='create-book-form' onSubmit={handleSubmit}> 
@@ -48,7 +45,7 @@ function CreateBook(){
             <input type='text' name='price' placeholder='Price' onChange={(e) => setForm({...form, price : e.target.value})}/>
             <div className="upload">
                 <label htmlFor="cover_image" className="btn-warning" style={{ cursor: "pointer" }}>
-                    <i className="fa fa-upload"></i> {form.cover_image ? form.cover_image.name : "Upload File"}
+                    <i className="fa fa-upload"></i> {form.cover_image ? form.cover_image.name : "Upload Cover Image"}
                     <input
                         id="cover_image"
                         name="cover_image"
@@ -57,9 +54,18 @@ function CreateBook(){
                         onChange={e => setForm({ ...form, cover_image: e.target.files[0] })}
                     />
                 </label>
+                <label htmlFor="book_imgs" className="btn-warning" style={{ cursor: "pointer" }}>
+                    <i className="fa fa-upload"></i> {form.book_imgs.length > 0 ? form.book_imgs[0].name : "Upload Book Images"}
+                    <input
+                        type="file"
+                        name="book_imgs"
+                        multiple
+                        onChange={e => setForm({ ...form, book_imgs: Array.from(e.target.files) })}
+                    />
+                </label>
             </div>
             {/* <input type="hidden" name="_token" value={form._token} /> */}
-            <input type="submit" value="Create Book" />
+            <button type="submit" className="btn-submit">Create Book</button>
         </form>
     )
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author');
             $table->decimal('price');
             $table->string('cover_image');
+            $table->string('book_imgs');
             $table->timestamps();
         });
     }

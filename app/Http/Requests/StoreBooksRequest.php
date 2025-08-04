@@ -28,7 +28,9 @@ class StoreBooksRequest extends FormRequest
         'publish_date' => 'required|string|date',
         'author' => 'required|string',
         'price' => 'required|numeric',
-        'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'book_imgs' => 'required|array|min:1', // Require at least one image
+        'book_imgs.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Each must be an image
         ];
     }
 }

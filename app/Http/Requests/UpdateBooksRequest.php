@@ -30,6 +30,9 @@ class UpdateBooksRequest extends FormRequest
             'price' => 'required|numeric',
             // Make cover_image optional for update
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            // Allow book_imgs to be optional for update
+            'book_imgs' => 'nullable|array',
+            'book_imgs.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

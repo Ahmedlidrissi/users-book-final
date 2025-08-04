@@ -13,8 +13,4 @@ class BookImgs extends Model
         'book_id',
         'image_path',
     ];
-    function book()
-    {
-        return $this->belongsTo(Books::class, 'book_id');
-    }
 }
