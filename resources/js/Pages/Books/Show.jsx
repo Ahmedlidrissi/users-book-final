@@ -16,7 +16,7 @@ function Show() {
         slidesToScroll: 1,
     };
 
-    // Combine cover image and gallery images for the slider
+    // Combine cover image and gallery images for the slider gs
     const sliderImages = [
         { id: 'cover', image_path: book.cover_image }
     ].concat(book.gallery_images || []);
