@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Books;
+use App\Models\BookImgs;
 use App\Http\Requests\StoreBooksRequest;
 use App\Http\Requests\UpdateBooksRequest;
 
@@ -14,9 +15,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        // $book = Books::latest()->get();
+        $book = Books::latest()->get();
         // If you want to include related images, you can use eager loading
-        $book = Books::with('bookImgs')->latest()->get();
+        // $book = Books::with('images')->latest()->get();
         return Inertia::render('Books/Index', ['books' =>$book]);
     }
 
@@ -31,23 +32,48 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBooksRequest $request)
-    {
+public function store(StoreBooksRequest $request)
+{
+    $validated = $request->validated();
 
-        $validated = $request->validated();
-        if ($request->hasFile('cover_image')) {
+    // Handle cover image
+    if ($request->hasFile('cover_image')) {
         $path = $request->file('cover_image')->store('covers', 'public');
         $validated['cover_image'] = $path;
     }
-        Books::create($validated);
-        return Inertia::location(route('books.index'));
+
+    // Create the book
+    $book = Books::create($validated);
+
+    // Handle gallery images
+    if ($request->hasFile('book_images')) {
+        foreach ($request->file('book_images') as $image) {
+            $imagePath = $image->store('book_images', 'public');
+            \App\Models\BookImgs::create([
+                'book_id' => $book->id,
+                'image_path' => $imagePath,
+            ]);
+        }
     }
+
+    return Inertia::location(route('books.index'));
+}
+
 
     /**
      * Display the specified resource.
      */
     public function show(Books $book)
     {
+        $book->load('galleryImages');
+        // Format images for frontend
+        $book->image_path = $book->galleryImages->map(function($img) {
+            return [
+                'id' => $img->id,
+                'image_path' => 'storage/' . $img->image_path,
+            ];
+        })->toArray();
+
         return Inertia::render('Books/Show', ['book' => $book]);
     }
 

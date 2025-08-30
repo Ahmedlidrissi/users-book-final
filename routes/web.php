@@ -6,7 +6,12 @@ use App\Http\Controllers\BooksController;
 Route::get('/', function () {
     return inertia('Home');
 });
-
+Route::get('/about', function () {
+    return inertia('About');
+});
+Route::get('/contact', function () {
+    return inertia('Contact');
+});
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'showRegisterForm'])
         ->name('register');

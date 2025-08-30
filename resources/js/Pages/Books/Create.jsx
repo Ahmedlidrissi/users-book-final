@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import './books.css'
-function CreateBook(){
+import './books.css';
+
+function CreateBook() {
     const [form, setForm] = useState({
         title: '',
         genre: '',
@@ -9,14 +10,23 @@ function CreateBook(){
         publish_date: '',
         author: '',
         price: '',
-        cover_image: '',
-        image_path: '',
+        cover_image: null,
         book_images: [],
-        // _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    })
+    });
+
+    const handleCoverChange = (e) => {
+        setForm({ ...form, cover_image: e.target.files[0] });
+    };
+
+    const handleGalleryChange = (e) => {
+        const files = Array.from(e.target.files);
+        setForm({ ...form, book_images: files });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
+
         formData.append('title', form.title);
         formData.append('genre', form.genre);
         formData.append('description', form.description);
@@ -24,44 +34,71 @@ function CreateBook(){
         formData.append('author', form.author);
         formData.append('price', form.price);
         formData.append('cover_image', form.cover_image);
-        formData.append('image_path', form.image_path);     
-        // formData.append('_token', form._token);
+
+        form.book_images.forEach((file, index) => {
+            formData.append(`book_images[${index}]`, file);
+        });
 
         Inertia.post('/books', formData, {
             forceFormData: true,
         });
-    }
-    return(
-        <form className='create-book-form' onSubmit={handleSubmit}> 
-            <h1 className='text-xl font-bold'>Add book</h1>
-            <input type='text' name='title' placeholder='Title' onChange={(e) => setForm({...form, title : e.target.value})}/>
-            <input type='text' name='genre' placeholder='Genre' onChange={(e) => setForm({...form, genre : e.target.value})}/>
-            <textarea
-                name="description"
-                placeholder="Description"
-                className="description-input"
-                onChange={e => setForm({ ...form, description: e.target.value })}
-                value={form.description}
-            />
-            <input  name='date' type='date' placeholder='Publish Date' onChange={(e) => setForm({...form, publish_date : e.target.value})}/>
-            <input type='text' name='author' placeholder='Author' onChange={(e) => setForm({...form, author : e.target.value})}/>
-            <input type='text' name='price' placeholder='Price' onChange={(e) => setForm({...form, price : e.target.value})}/>
+    };
+
+    return (
+        <form className='create-book-form' onSubmit={handleSubmit} encType="multipart/form-data">
+            <h1 className='text-xl font-bold'>Add Book</h1>
+
+            <input type='text' name='title' placeholder='Title'
+                onChange={(e) => setForm({ ...form, title: e.target.value })} />
+
+            <input type='text' name='genre' placeholder='Genre'
+                onChange={(e) => setForm({ ...form, genre: e.target.value })} />
+
+            <textarea name="description" placeholder="Description" className="description-input"
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                value={form.description} />
+
+            <input name='publish_date' type='date' placeholder='Publish Date'
+                onChange={(e) => setForm({ ...form, publish_date: e.target.value })} />
+
+            <input type='text' name='author' placeholder='Author'
+                onChange={(e) => setForm({ ...form, author: e.target.value })} />
+
+            <input type='text' name='price' placeholder='Price'
+                onChange={(e) => setForm({ ...form, price: e.target.value })} />
+
+            {/* Cover Image Upload */}
             <div className="upload">
                 <label htmlFor="cover_image" className="btn-warning" style={{ cursor: "pointer" }}>
-                    <i className="fa fa-upload"></i> {form.cover_image ? form.cover_image.name : "Upload File"}
+                    <i className="fa fa-upload"></i> {form.cover_image ? form.cover_image.name : "Upload Cover"}
                     <input
                         id="cover_image"
                         name="cover_image"
                         type="file"
                         style={{ display: "none" }}
-                        onChange={e => setForm({ ...form, cover_image: e.target.files[0] })}
+                        onChange={handleCoverChange}
                     />
                 </label>
             </div>
-            {/* <input type="hidden" name="_token" value={form._token} /> */}
+
+            {/* Gallery Images Upload */}
+            <div className="upload">
+                <label htmlFor="book_images" className="btn-warning" style={{ cursor: "pointer" }}>
+                    <i className="fa fa-upload"></i> Upload Gallery Images
+                    <input
+                        id="book_images"
+                        name="book_images"
+                        type="file"
+                        multiple
+                        style={{ display: "none" }}
+                        onChange={handleGalleryChange}
+                    />
+                </label>
+            </div>
+
             <input type="submit" value="Create Book" />
         </form>
-    )
+    );
 }
 
-export default CreateBook
+export default CreateBook;

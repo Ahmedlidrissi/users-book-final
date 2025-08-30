@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\BookImgs;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Books extends Model
 {
@@ -18,9 +19,9 @@ class Books extends Model
         'price',
         'cover_image',
     ];
-    function bookImgs()
+    public function galleryImages()
     {
-        return $this->hasMany(BookImgs::class, 'book_id');
+        return $this->hasMany(\App\Models\BookImgs::class, 'book_id');
     }
 
 }
